@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!--Load CSS and javascript-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <style>
+            .parent-container {
+                display: flex;
+            }
+            #overlay {
+                position: fixed;
+                display: none;
+                height: 100%;
+                width: 100%;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0,0,0,0.2);
+                z-index: 2;
+            }
+            #startButton {
+                cursor: pointer;
+            }
+            #submitButton {
+                cursor: pointer;
+            }
+            .hiddenTBody {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+    <div id="overlay"></div>
+        <div class="container">
+            <button id="startButton" type="button" class="btn btn-secondary btn-sm" disabled>Start</button>
+            <button id="submitButton" type="button" class="btn btn-primary btn-sm" disabled>Submit</button><br>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <!--Entry Form Column-->
+                <div class="col-sm">
+                    <form id="entry">
+                        <div class="form-group">
+                            <label for="shippingDateInput">Shipping Date:</label><br>
+                            <input type="date" class="form-control form-control-sm" id="shippingDateInput" placeholder="" style="width: 50%">
+                        </div>
+                        <div class="form-group">
+                            <label for="factoryInput">Factory:</label><br>
+                            <input type="text" class="form-control form-control-sm" id="factoryInput" placeholder="Enter Factory ID Here" style="width: 50%">
+                        </div>
+                        <div class="form-group">
+                            <label for="quantityInput">Quantity</label><br>
+                            <input type="number" class="form-control form-control-sm" id="quantityInput" placeholder="Enter Quantity Here" style="width: 50%">
+                        </div>
+                        <button id="addButton" type="button" class="btn btn-secondary btn-sm">Add</button><br>
+                        <div class="form-group">
+                            <label for="lineidtext">Line ID</label><br>
+                            <input type="text" readonly="readonly" class="form-control form-control-sm" id="lineidtext" style="width: 40%"><br>
+                        </div>
+                    </form>
+                </div>
+                <!--Information Table Column-->
+                <div class="col-sm">
+                    <table id="infoTable" class="table table-sm">
+                        <caption style="caption-side: top">Information</caption>
+                        <thead>
+                            <tr>
+                                <th>Location</th>
+                                <th>Available Inventory</th>
+                                <th>On Water Inventory</th>
+                                <th>In Production Inventory</th>
+                                <th>Current Backorders</th>
+                            </tr>
+                        </thead>
+                        <tbody id="infoTableBody">
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <!--Container Left-->
+                    <table id="pendingTable" class="table table-bordered table-sm">
+                        <caption style="caption-side: top">Pending</caption>
+                        <thead>
+                            <tr>
+                                <th>Shipping Date</th>
+                                <th>Factory</th>
+                                <th>Quantity</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                                <th>LineId</th>
+                                <th class="hiddenTBody">ArrayIndex</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pendingTbody">
+            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm">
+                    <!--Container Right-->
+                    <table id="currentTable" class="table table-bordered table-sm">
+                        <caption style="caption-side: top">Current</caption>
+                        <thead>
+                            <tr>
+                                <th>Shipping Date</th>
+                                <th>Factory</th>
+                                <th>Quantity</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                                <th>LineId</th>
+                                <th class="hiddenTBody">ArrayIndex</th>
+                            </tr>
+                        </thead>
+                        <tbody id="currentTbody">
+                                
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Perform button operations and request data from RESTlet-->
+        <script type="text/javascript" src="https://system.na2.netsuite.com/core/media/media.nl?id=scriptId&c=companyId&h=hash&_xt=.js"></script>
+        <script type="text/javascript" src="https://system.na2.netsuite.com/core/media/media.nl?id=scriptId&c=companyId&h=hash&_xt=.js"></script>
+        <script type="text/javascript" src="https://system.na2.netsuite.com/core/media/media.nl?id=scriptId&c=companyId&h=hash&_xt=.js"></script>
+    </body>
+</html>
